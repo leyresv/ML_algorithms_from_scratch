@@ -2,7 +2,7 @@
 
 In this repo I implement from scratch different Machine Learning algorithms commonly used in Natural Language Processing tasks.
 
-# Models
+# [Models](models/MODELS.md)
 ## Logistic Regression
 
 ## Support Vector Machine
