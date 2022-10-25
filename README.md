@@ -4,7 +4,7 @@ In this repo I implement from scratch different Machine Learning algorithms comm
 
 # Models
 
-[Here](models/README.md) you can find the different model implementations.
+[Here](models) you can find the different model implementations.
 ## Logistic Regression
 
 ### Logistic Regression equation
