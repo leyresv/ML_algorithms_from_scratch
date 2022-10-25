@@ -12,3 +12,5 @@ In this repo I implement from scratch different Machine Learning algorithms comm
 # Data
 
 # Usage
+
+# Visualization
