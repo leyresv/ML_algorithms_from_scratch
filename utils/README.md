@@ -1,3 +1,3 @@
-# Data
+# Utils
 
-Useful functions to preprocess the data
+Useful functions to preprocess the data and evaluate the models
