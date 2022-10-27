@@ -63,7 +63,7 @@ class LogisticRegressionClassifier:
             theta = np.zeros((X.shape[1], 1))
 
         if verbose:
-            print("Training classifier...")
+            print("Training LR classifier...")
 
         for i in range(num_iters):
             Y_prob = self.__sigmoid(X, theta) #Prob for list of sequences
@@ -89,16 +89,6 @@ class LogisticRegressionClassifier:
         :return: predicted labels. Numpy array of size (m, 1)
         """
         return np.array([1 if self.__sigmoid(x, self.theta) >= 0.5 else 0 for x in X])
-
-    def evaluate_accuracy(self, Y_gold, Y_pred):
-        """
-        Evaluate accuracy of the predictions
-
-        :param Y_gold: actual labels. Numpy array of size (m, 1) (m=number of labels)
-        :param Y_pred: predicted labels. Numpy array of size m
-        :return: accuracy value (int)
-        """
-        return sum([1 for y_gold, y_pred in zip(Y_gold, Y_pred) if y_gold == y_pred]) / len(Y_pred)
 
     def get_cost(self):
         """

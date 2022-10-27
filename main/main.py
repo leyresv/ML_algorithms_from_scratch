@@ -1,8 +1,10 @@
 import nltk
 import numpy as np
 
-from preprocess_data import create_word_freqs_dict, extract_freq_feature
-from logistic_regression import LogisticRegressionClassifier
+from utils.preprocess_data import create_word_freqs_dict, extract_freq_feature
+from utils.evaluation_metrics import evaluate_accuracy
+from models.logistic_regression import LogisticRegressionClassifier
+from models.naive_bayes import NaiveBayesClassifier
 from nltk.corpus import sentence_polarity
 
 nltk.download("sentence_polarity")
@@ -11,6 +13,51 @@ nltk.download('omw-1.4')
 nltk.download("stopwords")
 nltk.download("punkt")
 
+
+def print_results(test_sentences, y_test, y_pred):
+    print("Accuracy on test set:", evaluate_accuracy(y_test, y_pred))
+    print()
+    # Print some test sentences and their predicted and true label
+    for sentence, label, pred_label in zip(test_sentences[:5], y_test[:5], y_pred[:5]):
+        print(sentence)
+        print(f"Predicted label: {pred_label} ------- True label: {label[0]}")
+        print()
+
+
+def lr_classification(train_sentences, test_sentences, Y_train, Y_test, verbose=False):
+    # Crete frequencies dictionary
+    vocab_dict = create_word_freqs_dict(train_sentences, Y_train, verbose=verbose)
+
+    # Extract input features from sequences
+    X_train = extract_freq_feature(train_sentences, vocab_dict, verbose=verbose)
+    X_test = extract_freq_feature(test_sentences, vocab_dict, verbose=verbose)
+
+    # Instantiate the classifier
+    lr_classifier = LogisticRegressionClassifier()
+
+    # Hyper-parameters
+    alpha = 5e-6
+    num_iter = 500
+
+    # Train the classifier
+    lr_classifier.train(X_train, Y_train, alpha, num_iter, verbose=verbose)
+
+    # Predict labels for test set and evaluate accuracy
+    Y_pred = lr_classifier.predict(X_test)
+    if verbose:
+        print_results(test_sentences, Y_test, Y_pred)
+
+
+def nb_classification(train_sentences, test_sentences, Y_train, Y_test, verbose=False):
+    # Train the classifier
+    nb_classifier = NaiveBayesClassifier()
+    nb_classifier.train(train_sentences, Y_train, verbose=verbose)
+
+    # Predict labels for test set and evaluate accuracy
+    y_pred = nb_classifier.predict(test_sentences)
+
+    if verbose:
+        print_results(test_sentences, Y_test, y_pred)
 
 def main():
     # Import sentence polarity corpus and split data in train/test
@@ -27,33 +74,11 @@ def main():
     Y_train = np.append(np.ones((len(train_pos), 1)), np.zeros((len(train_neg), 1)), axis=0)
     Y_test = np.append(np.ones((len(test_pos), 1)), np.zeros((len(test_neg), 1)), axis=0)
 
-    # Crete frequencies dictionary
-    vocab_dict = create_word_freqs_dict(train_sentences, Y_train, verbose=True)
+    # Logistic Regression
+    lr_classification(train_sentences, test_sentences, Y_train, Y_test, verbose=True)
 
-    # Extract input features from sequences
-    X_train = extract_freq_feature(train_sentences, vocab_dict, verbose=True)
-    X_test = extract_freq_feature(test_sentences, vocab_dict, verbose=True)
-
-    # Instantiate the classifier
-    lr_classifier = LogisticRegressionClassifier()
-
-    # Hyper-parameters
-    alpha = 5e-6
-    num_iter = 500
-
-    # Train the classifier
-    lr_classifier.train(X_train, Y_train, alpha, num_iter, verbose=True)
-
-    # Predict labels for test set and evaluate accuracy
-    Y_pred = lr_classifier.predict(X_test)
-    print("Accuracy on test set:", lr_classifier.evaluate_accuracy(Y_test, Y_pred))
-
-    # Print some test sentences and their predicted and true label
-    print()
-    for sentence, label, pred_label in zip(test_sentences[:5], Y_test[:5], Y_pred[:5]):
-        print(sentence)
-        print(f"Predicted label: {pred_label} ------- True label: {label[0]}")
-        print()
+    # Naïve Bayes
+    nb_classification(train_sentences, test_sentences, Y_train, Y_test, verbose=True)
 
 
 if __name__=="__main__":
