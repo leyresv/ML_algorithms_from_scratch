@@ -74,7 +74,7 @@ class LogisticRegressionClassifier:
         self.J = J
 
         if verbose:
-            print(f"Training finished")
+            print("Training finished")
             print(f"The cost after training is {self.get_cost()}")
             print(f"The resulting weights vector is {self.get_weights()}")
             print()

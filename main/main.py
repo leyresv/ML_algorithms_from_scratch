@@ -59,6 +59,16 @@ def nb_classification(train_sentences, test_sentences, Y_train, Y_test, verbose=
     if verbose:
         print_results(test_sentences, Y_test, y_pred)
 
+    # Get word positiveness/negativeness ratio
+    print("Ratio of word 'movie':", nb_classifier.get_ratio("movie"))
+
+    # Get words with a positive ratio higher than 10:
+    print(nb_classifier.get_words_by_threshold(1, 10))
+
+    # Get words with a negative ratio lower than 0.5:
+    print(nb_classifier.get_words_by_threshold(0, 0.1))
+
+
 def main():
     # Import sentence polarity corpus and split data in train/test
     pos_ids = sentence_polarity.fileids('pos')
