@@ -133,6 +133,69 @@ def gradient_descent(X, Y, Y_prob, theta, alpha):
 
 ## Naïve Bayes
 
+### Bayes'rule
+
+Bayes' rule allows to compute the conditional probability of a class given some features with the following equation:
+
+---
+$$ P(class|features) = \frac{P(features|class)P(class)}{P(features)} $$
+
+---
+
+The Naïve Bayes algorithm can be used for NLP classification tasks, however, it makes two assumptions that are not always true in language data:
+*  Conditional Independence: the predictive features (words) are independent
+*  Bag of Words: the word order is not important 
+
+### Likelihood estimation with Laplace smoothing
+---
+$$ Likelihood = \frac{P(Pos)}{P(Neg)}\prod^m _{i=1} \frac{P(w_i|Pos)}{P(w_i|Neg)} $$
+
+$$ P(w_i | class) = \frac{freq_{(w_i, class)} + 1}{N_{class} + V}  $$
+
+---
+
+*  $m$: number of words in the sequence
+*  $N_{class} $: frequency of all words in a class
+*  $V$: vocabulary size (number of unique words in the vocabulary)
+*  Laplace smoothing: we add 1 to the numerator and V to the denominator to avoid multiplying by zero when we find a word that is not in our training vocabulary
+
+We get the likelihood score for the sequence:
+    * if score > 1   =>   class 1 (positive)
+    * if score < 1   =>   class 0 (negative)
+    * if score = 1   =>   neutral
+
+
+### Log likelihood
+
+To avoid numerical flow issues with the likelihood product, we introduce the log:
+
+---
+$$ Loglikelihood = log\frac{P(Pos)}{P(Neg)} + \sum^m _{i=1} \log\frac{P(w_i|Pos)}{P(w_i|Neg)} $$
+
+---
+The first component of the equation is the log prior and represents the classes distribution accross the whole training set, that is, the ratio of positive/negative documents in the training set. For perfectly balanced datasets, this ratio will be 1 so its log will be 0 and we won't add anything to the log likelihood.
+
+We get the log likelihood score for the sequence:
+ * if score > 0   =>   class 1 (positive)
+ * if score < 0   =>   class 0 (negative)
+ * if score = 0   =>   neutral
+    
+Reminder: log properties:
+   *  $log(xy) = log(x) + log(y)  $
+   *  $log\frac{x}{y} = log(x) - log(y)$
+
+
+### Naïve Bayes algorithm:
+
+1.  Create a frequencies dictionnary with
+     *  Key: (word, class)
+     *  Value: the frequency with which that word is mapped to that class in the training set
+2.  Count the number of positive and negative documents
+3.  Get the vocabulary size
+4.  Calculate the log prior
+5.  Create a dictionary with the log likelihood of each word in the vocabulary
+
+
 # Data
 
 # Usage
