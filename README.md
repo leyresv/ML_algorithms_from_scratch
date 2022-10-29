@@ -194,6 +194,7 @@ Reminder: log properties:
 3.  Get the vocabulary size
 4.  Calculate the log prior
 5.  Create a dictionary with the log likelihood of each word in the vocabulary
+6.  Predict the class of a new document by adding the log prior and the log likelihood of each word from the document
 
 
 # Data
