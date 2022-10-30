@@ -15,7 +15,7 @@ $$ h(x_i, θ) = \frac{1}{1 + e^{-θ^Tx_i}}  $$
 ---
 
 In Linear Regresssion, the output is the weighted sum of inputs.
-*   Linear Regression Equation: $h(x) = θ^T x =\theta_0 x_0 + \theta_1 x_1 +\theta_2 x_2 + ... \theta_m x_m$
+*   Linear Regression Equation: $h(x) = θ^T x =\theta_0 + \theta_1 x_1 +\theta_2 x_2 + ... \theta_m x_m$
 *   Input features vector for a single sequence: $x_i$
 *   Weights vector: $θ$
 
