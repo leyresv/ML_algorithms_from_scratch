@@ -9,7 +9,8 @@ class NaiveBayesClassifier:
         self.log_prior = 0
         self.log_likelihood = {}
 
-    def __get_conditional_probability(self, word, label, freqs_dict, n_class, vocab_size):
+    @staticmethod
+    def get_conditional_probability(word, label, freqs_dict, n_class, vocab_size):
         """
         Compute the probability of a word given a class: P(word|class)
 
@@ -22,7 +23,8 @@ class NaiveBayesClassifier:
         """
         return (freqs_dict.get((word, label), 0) + 1) / (n_class + vocab_size)
 
-    def __get_log_prior(self, labels):
+    @staticmethod
+    def get_log_prior(labels):
         """
         Calculate te log prior
 
@@ -56,12 +58,12 @@ class NaiveBayesClassifier:
         vocab_size = len(vocab)
 
         # Get dataset log prior
-        self.log_prior = self.__get_log_prior(y_train)
+        self.log_prior = self.get_log_prior(y_train)
 
         # Get log likelihood of each word
         for word in vocab:
-            prob_pos = self.__get_conditional_probability(word, 1, self.freqs_dict, num_pos, vocab_size)
-            prob_neg = self.__get_conditional_probability(word, 0, self.freqs_dict, num_neg, vocab_size)
+            prob_pos = self.get_conditional_probability(word, 1, self.freqs_dict, num_pos, vocab_size)
+            prob_neg = self.get_conditional_probability(word, 0, self.freqs_dict, num_neg, vocab_size)
             self.log_likelihood[word] = np.log(prob_pos) - np.log(prob_neg)
 
         if verbose:
