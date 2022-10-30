@@ -10,7 +10,8 @@ class LogisticRegressionClassifier:
         self.theta = None   # weights vector. Numpy array of shape (1, number of features)
         self.J = None       # cost (float)
 
-    def __sigmoid(self, X, theta):
+    @staticmethod
+    def sigmoid(X, theta):
         """
         Sigmoid function for logistic regression
 
@@ -21,7 +22,8 @@ class LogisticRegressionClassifier:
         """
         return 1.0 / (1.0 + np.exp(-np.dot(X, theta)))
 
-    def __cost(self, Y_prob, Y):
+    @staticmethod
+    def cost(Y_prob, Y):
         """
         Compute the log loss between predicted labels and gold labels
 
@@ -32,7 +34,8 @@ class LogisticRegressionClassifier:
         #Y = Y + np.expm1(1e-10)
         return float(-(np.dot(Y.T, np.log(Y_prob)) + np.dot((1-Y).T, np.log(1 - Y_prob)))/Y.shape[0])
 
-    def __gradient_descent(self, X, Y, Y_prob, theta, alpha):
+    @staticmethod
+    def gradient_descent(X, Y, Y_prob, theta, alpha):
         """
         Update the weights vector
 
@@ -65,10 +68,11 @@ class LogisticRegressionClassifier:
         if verbose:
             print("Training LR classifier...")
 
+        J = None
         for i in range(num_iters):
-            Y_prob = self.__sigmoid(X, theta) #Prob for list of sequences
-            J = self.__cost(Y_prob, Y)
-            theta = self.__gradient_descent(X, Y, Y_prob, theta, alpha)
+            Y_prob = self.sigmoid(X, theta) #Prob for list of sequences
+            J = self.cost(Y_prob, Y)
+            theta = self.gradient_descent(X, Y, Y_prob, theta, alpha)
 
         self.theta = theta
         self.J = J
@@ -88,7 +92,7 @@ class LogisticRegressionClassifier:
                                                                              n=number of features + 1 for bias)
         :return: predicted labels. Numpy array of size (m, 1)
         """
-        return np.array([1 if self.__sigmoid(x, self.theta) >= 0.5 else 0 for x in X])
+        return np.array([1 if self.sigmoid(x, self.theta) >= 0.5 else 0 for x in X])
 
     def get_cost(self):
         """
