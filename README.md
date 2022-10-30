@@ -47,7 +47,7 @@ Log loss for a single training example:
 $$Loss = -1\cdot[{\color{DarkGreen} {y_i \cdot log(p_i)}} + {\color{Red}{(1-y_i)\cdot log(1-p_i)}}]$$
 * Gold label: $y_i$
 * Predicted probability for seq $x_i$ (between 0 and 1): $h(x_i, θ)$ => The logs
-will be negative (we add a small value to avoid $log(0)$):
+will be negative (we add a small value to avoid $log(0)$ ):
     * $log(0.0001)=-4$ 
     * $log(0.5)=-0.3$
     * $log(1)=0$
