@@ -10,7 +10,7 @@ In this repo I implement from scratch different Machine Learning algorithms comm
 ### Logistic Regression equation
 ---
 
-$$ h(x_i, θ) = \frac{1}{1 + e^{-θ^Tx}}  $$
+$$ h(x, θ) = \frac{1}{1 + e^{-θ^Tx}}  $$
 
 ---
 
@@ -22,7 +22,7 @@ In Linear Regresssion, the output is the weighted sum of inputs.
 In Logistic Regression, we pass the Linear Regression output through a sigmoid
 function, that can map any real value between 0 and 1.
 *   Sigmoid function: $σ(x) = \frac{1}{1 + e^{-x}} $
-*   Logistic Regression Equation: $h(x_i) = σ(θ^T x_i)=$
+*   Logistic Regression Equation: $h(x, \theta) = σ(θ^T x_i)=$
     * $\geq 0.5   \text{    if     }   \theta^Tx_i > 0$
     * $< 0.5 \text{    if    }    \theta^Tx_i < 0$
 
