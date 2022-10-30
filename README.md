@@ -10,7 +10,7 @@ In this repo I implement from scratch different Machine Learning algorithms comm
 ### Logistic Regression equation
 ---
 
-$$ h(x, θ) = \frac{1}{1 + e^{-θ^Tx_i}}  $$
+$$ h(x_i, θ) = \frac{1}{1 + e^{-θ^Tx_i}}  $$
 
 ---
 
