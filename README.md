@@ -10,21 +10,21 @@ In this repo I implement from scratch different Machine Learning algorithms comm
 ### Logistic Regression equation
 ---
 
-$$ h(x, θ) = \frac{1}{1 + e^{-θ^Tx}}  $$
+$$ h(x, θ) = \frac{1}{1 + e^{-θ^Tx_i}}  $$
 
 ---
 
 In Linear Regresssion, the output is the weighted sum of inputs.
-*   Linear Regression Equation: $h(x) = θ^T x =\theta_0 + \theta_1 x_1 +\theta_2 x_2 + ... \theta_m x_m$
-*   Input features vector for a single sequence: $x$
+*   Linear Regression Equation: $h(x_i) = θ^T x_i =\theta_0 + \theta_1 x_{i1} +\theta_2 x_{i2} + ... \theta_m x_{im}$
+*   Input features vector for a single sequence: $x_i$
 *   Weights vector: $θ$ ( $θ_0=1$ for bias)
 
 In Logistic Regression, we pass the Linear Regression output through a sigmoid
 function, that can map any real value between 0 and 1.
 *   Sigmoid function: $σ(x) = \frac{1}{1 + e^{-x}} $
-*   Logistic Regression Equation: $h(x, \theta) = σ(θ^T x)=$
-    * $\geq 0.5   \text{    if     }   \theta^Tx > 0$
-    * $< 0.5 \text{    if    }    \theta^Tx < 0$
+*   Logistic Regression Equation: $h(x_i, \theta) = σ(θ^T x_i)=$
+    * $\geq 0.5   \text{    if     }   \theta^Tx_i > 0$
+    * $< 0.5 \text{    if    }    \theta^Tx_i < 0$
 
 
 ```python
