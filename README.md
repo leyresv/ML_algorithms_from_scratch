@@ -22,9 +22,9 @@ In Linear Regresssion, the output is the weighted sum of inputs.
 In Logistic Regression, we pass the Linear Regression output through a sigmoid
 function, that can map any real value between 0 and 1.
 *   Sigmoid function: $σ(x) = \frac{1}{1 + e^{-x}} $
-*   Logistic Regression Equation: $h(x, \theta) = σ(θ^T x_i)=$
-    * $\geq 0.5   \text{    if     }   \theta^Tx_i > 0$
-    * $< 0.5 \text{    if    }    \theta^Tx_i < 0$
+*   Logistic Regression Equation: $h(x, \theta) = σ(θ^T x)=$
+    * $\geq 0.5   \text{    if     }   \theta^Tx > 0$
+    * $< 0.5 \text{    if    }    \theta^Tx < 0$
 
 
 ```python
