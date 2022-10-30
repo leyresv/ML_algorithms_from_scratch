@@ -17,7 +17,7 @@ $$ h(x, θ) = \frac{1}{1 + e^{-θ^Tx}}  $$
 In Linear Regresssion, the output is the weighted sum of inputs.
 *   Linear Regression Equation: $h(x) = θ^T x =\theta_0 + \theta_1 x_1 +\theta_2 x_2 + ... \theta_m x_m$
 *   Input features vector for a single sequence: $x$
-*   Weights vector: $θ$ ($\theta_0=1$ for bias)
+*   Weights vector: $θ$ ( $θ_0=1$ for bias)
 
 In Logistic Regression, we pass the Linear Regression output through a sigmoid
 function, that can map any real value between 0 and 1.
