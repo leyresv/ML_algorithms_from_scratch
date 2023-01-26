@@ -160,9 +160,9 @@ $$ P(w_i | class) = \frac{freq_{(w_i, class)} + 1}{N_{class} + V}  $$
 
 We get the likelihood score for the sequence:
 
-    * if score > 1   =>   class 1 (positive)
-    * if score < 1   =>   class 0 (negative)
-    * if score = 1   =>   neutral
+ *  if score > 1   =>   class 1 (positive)
+ *  if score < 1   =>   class 0 (negative)
+ *  if score = 1   =>   neutral
 
 
 ### Log likelihood
@@ -176,9 +176,9 @@ $$ Loglikelihood = log\frac{P(Pos)}{P(Neg)} + \sum^m _{i=1} \log\frac{P(w_i|Pos)
 The first component of the equation is the log prior and represents the classes distribution accross the whole training set, that is, the ratio of positive/negative documents in the training set. For perfectly balanced datasets, this ratio will be 1 so its log will be 0 and we won't add anything to the log likelihood.
 
 We get the log likelihood score for the sequence:
- * if score > 0   =>   class 1 (positive)
- * if score < 0   =>   class 0 (negative)
- * if score = 0   =>   neutral
+ *  if score > 0   =>   class 1 (positive)
+ *  if score < 0   =>   class 0 (negative)
+ *  if score = 0   =>   neutral
     
 Reminder: log properties:
    *  $log(xy) = log(x) + log(y)  $
