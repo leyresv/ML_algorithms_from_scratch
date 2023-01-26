@@ -159,6 +159,7 @@ $$ P(w_i | class) = \frac{freq_{(w_i, class)} + 1}{N_{class} + V}  $$
 *  Laplace smoothing: we add 1 to the numerator and V to the denominator to avoid multiplying by zero when we find a word that is not in our training vocabulary
 
 We get the likelihood score for the sequence:
+
     * if score > 1   =>   class 1 (positive)
     * if score < 1   =>   class 0 (negative)
     * if score = 1   =>   neutral
